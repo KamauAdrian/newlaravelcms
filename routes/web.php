@@ -28,15 +28,15 @@ use App\User;
 //| Raw sql reading data from a database
 //|--------------------------------------------------------------------------
 //*/
-//Route::get('/read', function () {
-//
-//    $results=DB::select('select * from members where tid=?',[2]);
-//foreach ($results as $post){
-//    return $post->email;
-//
-//}
-//
-//});
+Route::get('/read', function () {
+
+    $results=DB::select('select * from members where tid=?',[2]);
+foreach ($results as $post){
+    return $post->email;
+
+}
+
+});
 ///*
 //|--------------------------------------------------------------------------
 //| Raw sql updating data to a database
@@ -247,7 +247,7 @@ use App\User;
 //*/
 //Route::get('/getrole','PostController@getroles');
 //
-//Route::get("/contact","PostController@contact");
+Route::get("/contact","PostController@contact");
 //Route::get("/posts","PostController@create");
 //Route::get('/insert','AdminsController@index');
 
@@ -258,6 +258,15 @@ Route::get('/user/country/{id}','PostController@country');
 |--------------------------------------------------------------------------
 */
 //Route::resource('/posts','PostController');
+Route::get('/','PostController@index');
+Route::get('/{post}','PostController@show');
 Route::get('/posts/create','PostController@create');
-
 Route::post('/save', 'PostController@store')->name('save');
+Route::post('/post/{id}/comment', 'CommentsController@store')->name('save');
+
+
+//Route::get('/posts',function (){
+//    $posts=DB::table('posts')->latest()->get();
+//    $posts=App\Post::all();
+//    return view('posts.index',compact('posts'));
+//});

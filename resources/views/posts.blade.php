@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master.php')
 
 @section('content')
     <h1>This is the post page</h1>

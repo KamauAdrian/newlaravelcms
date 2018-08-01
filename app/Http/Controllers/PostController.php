@@ -6,6 +6,7 @@ use App\Country;
 use App\Post;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 
 class PostController extends Controller
@@ -17,7 +18,8 @@ class PostController extends Controller
      */
     public function index()
     {
-
+        $posts=Post::orderBy('created_at','desc')->get();
+return view('posts.index',compact('posts'));
     }
 
     /**
@@ -33,10 +35,7 @@ class PostController extends Controller
 //        'Play games'
 //    ];
 //    return view('posts',compact('tasks'));
-
-
         return view('posts.create');
-
     }
 
     /**
@@ -48,8 +47,30 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
-       return $request->all();
-        //dd($request);
+//        dd(request(['title','body']));
+//        dd(request('title'));
+//       dd($request->all());
+
+
+////        create a new post
+//        $post= new Post;
+//        $post->title=request('title');
+//        $post->body=request('body');
+//        //save the new post
+//        $post->save();
+//        //redirect to the homepage
+//        return redirect('/');
+
+        $this->validate(request(),[
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
+
+
+        Post::create(request(['title','body']));
+        return redirect('/');
+
     }
 
     /**
@@ -58,9 +79,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(post $post)
     {
         //
+//        $post=Post::find($id);
+        return view('posts.show',compact('post'));
     }
 
     /**
@@ -96,10 +119,14 @@ class PostController extends Controller
     {
         //
     }
-//    public function contact(){
-//        return view('contact');
-//
-//    }
+    public function contact(){
+        return view('contact');
+
+    }
+    public function addcomment(){
+
+
+    }
 //    public function newpost($id){
 ////       return User::find($id)->post;
 ////       return User::find($id)->post->title;

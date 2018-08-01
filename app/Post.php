@@ -13,14 +13,17 @@ class Post extends Model
 //    protected $primaryKey = 'tid';
     protected $dates=['deleted_at'];
     protected $fillable = [
-        'name',
-        'email',
-        'password'
+        'title',
+        'body'
     ];
+
     public function user(){
 
         return $this->belongsTo('App\User');
     }
 
+    public function comments(){
+        return $this->hasMany('App\Comment');
+    }
 
 }
