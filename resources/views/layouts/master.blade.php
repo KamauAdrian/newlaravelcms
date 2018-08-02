@@ -9,15 +9,15 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Blog Template for Bootstrap</title>
+    <title>Adrian Blog</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="{{url('css/bootstrap.css')}}" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 {{--<link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">--}}
 <!-- Custom styles for this template -->
-    <link href="css/blog.css" rel="stylesheet">
+    <link href="{{url('css/blog.css')}}" rel="stylesheet">
 </head>
 
 <body>
@@ -45,7 +45,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.js"></script>
+    <script src="{{url('js/jquery.js')}}"></script>
+    <script src="{{url('js/bootstrap.js')}}"></script>
 </body>
 </html>

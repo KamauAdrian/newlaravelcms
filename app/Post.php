@@ -18,12 +18,20 @@ class Post extends Model
     ];
 
     public function user(){
-
         return $this->belongsTo('App\User');
     }
 
     public function comments(){
         return $this->hasMany('App\Comment');
+    }
+    public function addcoment($body){
+       $this->comments()->create(['body'=>$body]);
+
+////the long method
+//Comment::create([
+//    'body'=>$body,
+//    'post_id'=>$this->id
+//]);
     }
 
 }

@@ -16,15 +16,18 @@
 </div>
 <div class="card">
     <div class="card-block">
-        <form method="post" action="post/{{$post->id}}/comment">
+        <form method="post" action="{{$post->id}}/comments">
             @csrf
             <div class="form-group">
                 <textarea name="body" id="body" class="form-control" placeholder="Your Comments here"></textarea>
             </div>
             <div class="form-group">
-                <input type="button" name="comment" value="Add comment" class="btn btn-primary">
+                <div class="">
+                    <button type="submit" class="btn btn-primary">Add Comment</button>
+                </div>
             </div>
         </form>
+        @include('layouts.errors')
     </div>
 </div>
 

@@ -258,11 +258,15 @@ Route::get('/user/country/{id}','PostController@country');
 |--------------------------------------------------------------------------
 */
 //Route::resource('/posts','PostController');
-Route::get('/','PostController@index');
-Route::get('/{post}','PostController@show');
+Route::get('/','PostController@index')->name('home');
 Route::get('/posts/create','PostController@create');
 Route::post('/save', 'PostController@store')->name('save');
-Route::post('/post/{id}/comment', 'CommentsController@store')->name('save');
+Route::post('/{post}/comments', 'CommentsController@store');
+Route::get('/register','RegistrationsController@create');
+Route::post('/register','RegistrationsController@store')->name('register');
+Route::get('/login','SessionsController@create');
+
+
 
 
 //Route::get('/posts',function (){

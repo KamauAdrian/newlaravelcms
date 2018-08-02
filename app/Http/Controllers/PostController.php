@@ -123,10 +123,6 @@ return view('posts.index',compact('posts'));
         return view('contact');
 
     }
-    public function addcomment(){
-
-
-    }
 //    public function newpost($id){
 ////       return User::find($id)->post;
 ////       return User::find($id)->post->title;
