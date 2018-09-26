@@ -1,10 +1,10 @@
-@extends('layouts.master')
+@extends('layouts.app')
 @section('content')
 
 @foreach($posts as $post)
+
     @include('posts.post')
 @endforeach
-
     <nav>
         <ul class="pager">
             <li><a href="#">Previous</a></li>
@@ -12,6 +12,7 @@
         </ul>
     </nav>
 @endsection
+
 
 
 

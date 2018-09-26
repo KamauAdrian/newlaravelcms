@@ -259,12 +259,11 @@ Route::get('/user/country/{id}','PostController@country');
 */
 //Route::resource('/posts','PostController');
 Route::get('/','PostController@index')->name('home');
-Route::get('/posts/create','PostController@create');
-Route::post('/save', 'PostController@store')->name('save');
-Route::post('/{post}/comments', 'CommentsController@store');
-Route::get('/register','RegistrationsController@create');
-Route::post('/register','RegistrationsController@store')->name('register');
-Route::get('/login','SessionsController@create');
+//Route::get('/register','RegistrationsController@create');
+//Route::post('/register','RegistrationsController@store')->name('register');
+//
+//Route::get('/login','SessionsController@create');
+//Route::get('/logout','SessionsController@destroy');
 
 
 
@@ -274,3 +273,20 @@ Route::get('/login','SessionsController@create');
 //    $posts=App\Post::all();
 //    return view('posts.index',compact('posts'));
 //});
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware'=>'auth'],function (){
+    Route::get('/posts/create','PostController@create')->name('create');
+    Route::post('/save', 'PostController@store')->name('save');
+    Route::post('/upload', 'PostController@uploadfile')->name('upload');
+    Route::get('/{post}', 'PostController@show');
+    Route::post('/{post}/comments', 'CommentsController@store');
+
+    //edit the post
+    Route::get('/{post}/edit','PostController@edit')->name('edit');
+    Route::put('/edit/{post}','PostController@update');
+
+//delete the post
+    Route::get('/{post}/delete','PostController@destroy');
+});

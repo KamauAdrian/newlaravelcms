@@ -10,5 +10,8 @@
     <p class="blog-post-meta">{{$post->created_at->toFormattedDateString()}}</p>
 
     {{$post->body}}
+    <div class="imagecontainer">
+        <img height="100px" src="images/{{$post->path}}" alt="">
+    </div>
 
 </div><!-- /.blog-post -->

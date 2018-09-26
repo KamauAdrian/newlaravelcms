@@ -18,8 +18,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts=Post::orderBy('created_at','desc')->get();
-return view('posts.index',compact('posts'));
+        $posts = Post::latest()->get();
+//        $posts=Post::orderBy('created_at','desc')->get();
+
+        return view('posts.index',compact('posts'));
     }
 
     /**
@@ -51,25 +53,40 @@ return view('posts.index',compact('posts'));
 //        dd(request('title'));
 //       dd($request->all());
 
-
-////        create a new post
-//        $post= new Post;
-//        $post->title=request('title');
-//        $post->body=request('body');
-//        //save the new post
-//        $post->save();
-//        //redirect to the homepage
-//        return redirect('/');
-
         $this->validate(request(),[
             'title' => 'required',
-            'body' => 'required'
+            'body' => 'required|min:2'
         ]);
 
+//        create a new post
+        $post= new Post;
+        $post->user_id=auth()->user()->id;
+        $post->title=request('title');
+        $post->body=request('body');
+//        //save the new post
 
+//        $post->save();
+        if($request->has('img')){
+            $file = $request->file('img');
 
-        Post::create(request(['title','body']));
+            $name = $file->getClientOriginalName();
+            $file->move('images', $name);
+            $input['path']=$name;
+            $post->path = $name;
+        }
+
+        $post->save();
+
+//        //redirect to the homepage
         return redirect('/');
+
+//auth()->user()->Publish(new Post(request(['title','body'])));
+//return redirect('/');
+
+
+
+//        Post::create(request(['title','body']));
+//        return redirect('/');
 
     }
 
@@ -94,7 +111,28 @@ return view('posts.index',compact('posts'));
      */
     public function edit($id)
     {
-        //
+
+        return view('posts.edit',compact('post'));
+
+    }
+    public function update(Request $request,$id)
+    {
+        $post = post::find($id);
+        $post->title = $request->title;
+        $post->body = $request->body;
+
+        $post->save();
+
+
+        return redirect('/')->with('success','Post Updated Successfully');
+
+
+
+    }
+    public function destroy(post $post){
+
+        $post->delete();
+        return redirect('/');
     }
 
     /**
@@ -104,10 +142,6 @@ return view('posts.index',compact('posts'));
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -115,10 +149,6 @@ return view('posts.index',compact('posts'));
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
     public function contact(){
         return view('contact');
 
@@ -151,7 +181,9 @@ return view('posts.index',compact('posts'));
 //       }
 //
 //    }
-
+public function uploadfile(Request $request){
+       $file = $request->image('image');
+}
 
 public function country($id){
 

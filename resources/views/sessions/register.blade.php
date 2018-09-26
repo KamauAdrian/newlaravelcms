@@ -1,8 +1,6 @@
 @extends('layouts.master')
 @section('content')
     <h2>REGISTER</h2>
-
-
     <form class="form-horizontal" method="post" action="{{route('register')}}">
         @csrf
         <div class="form-group">
@@ -21,6 +19,13 @@
             <label for="password" class="col-sm-2 control-label">Password:</label>
             <div class="col-sm-10">
                 <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="password" class="col-sm-2 control-label">Confirm Password:</label>
+            <div class="col-sm-10">
+                <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="Confirm Password">
             </div>
         </div>
 

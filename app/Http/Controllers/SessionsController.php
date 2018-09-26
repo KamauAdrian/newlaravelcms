@@ -11,4 +11,9 @@ class SessionsController extends Controller
 
         return view('sessions.login');
     }
+    public function destroy(){
+
+        auth()->logout();
+        return redirect()->home();
+    }
 }

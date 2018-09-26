@@ -20,7 +20,7 @@ class RegistrationsController extends Controller
         $this->validate(request(),[
             'name'=>'required',
             'email'=>'required|email',
-            'password'=>'required'
+            'password'=>'required|confirmed'
         ]);
 
         //create and save the user

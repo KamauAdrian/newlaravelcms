@@ -40,4 +40,9 @@ class User extends Authenticatable
 
         return $this->belongsToMany('App\Role');
     }
+    public function Publish(post $post){
+
+        $this->posts()->save($post);
+
+    }
 }

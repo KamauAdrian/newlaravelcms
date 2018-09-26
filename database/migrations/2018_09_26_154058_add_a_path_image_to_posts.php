@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAUsersRolesTable extends Migration
+class AddAPathImageToPosts extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateAUsersRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('role_user', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('role_id');
-            $table->timestamps();
+        Schema::table('posts', function (Blueprint $table) {
+            //
+            $table->string('path');
         });
     }
 
@@ -28,6 +26,9 @@ class CreateAUsersRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('role_user');
+        Schema::table('posts', function (Blueprint $table) {
+            //
+            $table->dropColumn('path');
+        });
     }
 }

@@ -25,31 +25,33 @@
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
 </head>
 <body>
-{{--<div id="app">--}}
+    {{--<div id="app">--}}
 
 
-{{--<main class="py-4">--}}
-{{--@yield('content')--}}
-{{--</main>--}}
-{{--</div>--}}
-<div class="container">
-    @include('layouts.navbar')
+        {{--<main class="py-4">--}}
+            {{--@yield('content')--}}
+        {{--</main>--}}
+    {{--</div>--}}
+    <div class="container">
+        @include('layouts.navbar')
 
-    <div class="blog-header">
-        <h1 class="blog-title">The Bootstrap Blog</h1>
-        <p class="lead blog-description">The official example template of creating a blog with Bootstrap.</p>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-8 blog-main">
-            @yield('content')
+        <div class="blog-header">
+            <center>
+            <h1 class="blog-title">The Bootstrap Blog</h1>
+            <p class="lead blog-description">The official example template of creating a blog with Bootstrap.</p>
+            </center>
         </div>
-    </div>
-</div><!-- /.container -->
+
+        <div class="row">
+            <div class="col-sm-8 blog-main">
+                @yield('content')
+            </div>
+            @include('layouts.sidebar')
+        </div>
+    </div><!-- /.container -->
 
 
 
-@include('layouts.footer')
+    @include('layouts.footer')
 </body>
 </html>
-
