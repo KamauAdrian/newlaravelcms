@@ -16,10 +16,19 @@ class CommentsController extends Controller
 $post->addcoment(request('body'));
 
 
-////the long method to create a comment
+//the long method to create a comment
+//        $post = new Post();
+//        $post_id = $post->find('post_id');
+//        $comment = new Comment();
+//        $comment->post_id=$post_id;
+//        $comment->body=request('body');
+//        $comment->user_id=auth()->user()->id;
+//
+//        $comment->save();
 //        Comment::create([
 //            'body'=>request('body'),
-//            'post_id'=>$post->id
+//            'post_id'=>$post->id,
+//            'user_id'=>
 //
 //        ]);
         return back();
