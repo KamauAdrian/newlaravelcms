@@ -30,7 +30,6 @@
 <form enctype="multipart/form-data" method="post" action="{{route('save')}}" class="form-horizontal">
         @csrf
 
-
     <div class="form-group">
         <label for="title" class="col-sm-2 control-label">Title</label>
             <div class="col-sm-10">
